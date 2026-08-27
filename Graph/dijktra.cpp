@@ -7,7 +7,7 @@ int main()
     vector<vector<pair<int, int>>> graph(node + 1);
 
     cout << "Graph Input: " << endl;
-    for (int i = 1; i <= edge; i++)
+    for (int i = 0; i < edge; i++)
     {
         int u, v, w;
         cin >> u >> v >> w;
@@ -21,6 +21,8 @@ int main()
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     dist[source] = 0;
     pq.push({0, source});
+    vector<vector<int>> path(node);
+    path[source].push_back(source);
 
     while (pq.size() != 0)
     {
@@ -34,12 +36,14 @@ int main()
             {
                 dist[v] = dist[u] + w;
                 pq.push({dist[v], v});
+                path[v] = path[u];
+                path[v].push_back(v);
             }
         }
     }
 
     cout << "Graph Output: " << endl;
-    for (int i = 1; i <= node; i++)
+    for (int i = 0; i < node; i++)
     {
         cout << i << " ->" << " ";
         for (auto edge : graph[i])
@@ -50,7 +54,7 @@ int main()
     }
     cout << endl;
     cout << "Shortest Path: " << endl;
-    for (int i = 1; i <= node; i++)
+    for (int i = 0; i < node; i++)
     {
         cout << source << "-> " << i << " " << "Cost: ";
         if (dist[i] == INT_MAX)
@@ -60,6 +64,17 @@ int main()
         else
         {
             cout << dist[i] << endl;
+            cout << "Path : ";
+            for (int j = 0; j < path[i].size(); j++)
+            {
+                cout << path[i][j];
+                if (j != (path[i].size() - 1))
+                {
+                    cout << "->";
+                }
+            }
+            cout << endl;
         }
+        cout << endl;
     }
 }
