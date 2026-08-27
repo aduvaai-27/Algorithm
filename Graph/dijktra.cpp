@@ -78,3 +78,13 @@ int main()
         cout << endl;
     }
 }
+
+/*5 6
+Graph Input: 
+0 1 2
+0 2 4
+1 2 1
+1 3 7
+2 4 3
+3 4 2
+Source: 0*/
