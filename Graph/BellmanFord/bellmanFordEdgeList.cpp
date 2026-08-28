@@ -8,15 +8,18 @@ public:
     int weight;
 };
 
-
 int main()
 {
     int node, edge;
     cin >> node >> edge;
     vector<Edge> edges(edge);
+    cout << "Graph Input : " << endl;
     for (int i = 0; i < edge; i++)
     {
-        cin >> edges[i].u >> edges[i].v >> edges[i].weight;
+        int u, v, w;
+        cin >> u >> v >> w;
+        edges.push_back({u, v, w});
+        edges.push_back({v, u, w});
     }
     int source;
     cout << "Source : ";
@@ -52,14 +55,14 @@ int main()
         }
     }
 
-    for (int i = 0; i <= node; i++)
+    for (int i = 0; i < node; i++)
     {
-        cout << source << "->" << i << ": ";
+        cout << source << "->" << i << " | Cost : " << ": ";
         if (dist[i] == INT_MAX)
             cout << "INFINITY" << endl;
         else
         {
-            cout << dist[i] << "| Path :";
+            cout << dist[i] << "| Path : ";
             for (int j = 0; j < path[i].size(); j++)
             {
                 cout << " " << path[i][j] << " ";
@@ -72,3 +75,21 @@ int main()
         }
     }
 }
+
+/*
+INPUT:
+5 6
+Graph Input :
+0 1 2
+0 2 4
+1 2 1
+1 3 7
+2 4 3
+3 4 2
+Source : 0
+OUTPUT:
+0->0 | Cost : : 0| Path :  0
+0->1 | Cost : : 2| Path :  0 -> 1
+0->2 | Cost : : 3| Path :  0 -> 1 -> 2
+0->3 | Cost : : 8| Path :  0 -> 1 -> 2 -> 4 -> 3
+0->4 | Cost : : 6| Path :  0 -> 1 -> 2 -> 4 */
