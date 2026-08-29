@@ -53,7 +53,6 @@ int main()
         path[i][i] = {i};
     }
 
-    vector<vector<int>> dist(node, vector<int>(node, 0));
 
     for (int k = 0; k < node; k++)
     {
@@ -69,13 +68,20 @@ int main()
                     {
                         setCost(i, j, ik + kj);
                         path[i][j] = path[i][k];
-                        for (int p = 1; p < path[i][k].size(); p++)
+                        for (int p = 1; p < path[k][j].size(); p++)
                         {
                             path[i][j].push_back(path[i][k][p]);
                         }
                     }
                 }
             }
+        }
+    }
+
+    for(int i=0;i<node;i++){
+        if(getCost(i,i)<0){
+            cout<<"Negative Cycle Exists..."<<endl;
+            return;
         }
     }
 
