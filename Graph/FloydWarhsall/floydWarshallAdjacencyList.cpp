@@ -70,7 +70,7 @@ int main()
                         path[i][j] = path[i][k];
                         for (int p = 1; p < path[k][j].size(); p++)
                         {
-                            path[i][j].push_back(path[i][k][p]);
+                            path[i][j].push_back(path[k][j][p]);
                         }
                     }
                 }
@@ -81,7 +81,7 @@ int main()
     for(int i=0;i<node;i++){
         if(getCost(i,i)<0){
             cout<<"Negative Cycle Exists..."<<endl;
-            return;
+            return -1;
         }
     }
 
