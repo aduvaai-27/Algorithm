@@ -34,7 +34,7 @@ int main()
 
                     path[i][j] = path[i][k];
 
-                    for (int p = 1; p < path[j][k].size(); p++)
+                    for (int p = 1; p < path[k][j].size(); p++)
                     {
 
                         path[i][j].push_back(path[k][j][p]);
